@@ -1,5 +1,11 @@
 <h1>Questions</h1>
 
+<%= form_tag nil, method: :get do %>
+  <%= text_field_tag :q, @query %>
+  <%= submit_tag 'Search' %>
+  <% if params[:q] %>results for "<%= params[:q] %>" | <%= link_to 'reset search', root_path %><% end %>
+<% end %>
+
 <table>
   <tbody>
     <tr>
