@@ -14,9 +14,10 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test '#find_or_create_by_user_info to create user' do
+    random_hex = SecureRandom.hex
     user_info = {
-      id: 'mary_google_uid',
-      name: 'Mary',
+      id: random_hex,
+      name: random_hex,
       picture: 'https://api.adorable.io/avatars/285/mary.png'
     }
     assert_difference('User.count') do
