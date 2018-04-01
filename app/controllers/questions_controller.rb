@@ -6,10 +6,10 @@ class QuestionsController < ApplicationController
   before_action :authenticate_owner!, only: %i[edit update destroy]
 
   def index
-    paginate = Paginate.new(repo: Question.list, page: params[:page].to_i)
-    paginate.perform
-    @pagination = paginate.pagination
-    @questions = paginate.records.map{ |question| QuestionPresenter.new(question) }
+    list_questions = ListQuestions.new(repo: Question, params: params)
+    list_questions.perform
+    @questions = list_questions.questions
+    @pagination = list_questions.pagination
   end
 
   def show
