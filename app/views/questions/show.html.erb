@@ -1,0 +1,7 @@
+<h1><%= @question.title %></h1>
+
+<%= link_to_if @question.belongs_to?(current_user), 'Edit Question', edit_question_path(@question) %>
+
+<hr>
+
+<%= sanitize @question.content %>

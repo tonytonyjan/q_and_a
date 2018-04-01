@@ -25,6 +25,8 @@
         <% else %>
           <li><%= link_to 'Sign in with google', google_sign_in_url %></li>
         <% end %>
+        <li><%= link_to 'List questions', root_path %></li>
+        <li><%= link_to 'Ask new question', new_question_path %></li>
       </ul>
     </nav>
     <%= yield %>

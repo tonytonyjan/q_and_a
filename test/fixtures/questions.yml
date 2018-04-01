@@ -1,0 +1,9 @@
+john:
+  title: Hello, John
+  content: content
+  user: john
+
+mary:
+  title: Hello, Mary
+  content: content
+  user: mary
