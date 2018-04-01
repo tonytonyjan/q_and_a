@@ -8,7 +8,9 @@
 
 <hr>
 
-<%= sanitize @question.content %>
+<%= sanitize RenderMarkdown.new(@question.content).to_html %>
+
+<hr>
 
 <h1>Answers</h1>
 
@@ -28,7 +30,7 @@
             <%= image_tag answer.user.avatar, width: 50, height: 50 %>
           </td>
           <td><%= answer.user.name %></td>
-          <td style="width: 320px"><%= sanitize answer.content %></td>
+          <td style="max-width: 50vw"><%= sanitize RenderMarkdown.new(answer.content).to_html %></td>
           <td><%= l answer.created_at, format: :short %></td>
           <td><%= link_to_if answer.belongs_to?(current_user), 'Edit', edit_question_answer_path(@question, answer) %></td>
           <td><%= link_to_if answer.belongs_to?(current_user), 'Delete', question_answer_path(@question, answer), method: :delete, data: { confirm: 'Are you sure?' } %></td>

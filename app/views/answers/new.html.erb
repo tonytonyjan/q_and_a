@@ -1,6 +1,6 @@
 <h1>Answer to "<%= @question.title %>"</h1>
 
-<%= sanitize @question.content %>
+<%= sanitize RenderMarkdown.new(@question.content).to_html %>
 
 <hr>
 
