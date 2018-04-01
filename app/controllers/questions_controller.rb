@@ -9,14 +9,15 @@ class QuestionsController < ApplicationController
     paginate = Paginate.new(repo: Question.list, page: params[:page].to_i)
     paginate.perform
     @pagination = paginate.pagination
-    @questions = paginate.records
+    @questions = paginate.records.map{ |question| QuestionPresenter.new(question) }
   end
 
   def show
     paginate = Paginate.new(repo: @question.answers.list, page: params[:page].to_i)
     paginate.perform
+    @question = QuestionPresenter.new(@question)
     @pagination = paginate.pagination
-    @answers = paginate.records
+    @answers = paginate.records.map { |answer| AnswerPresenter.new(answer) }
   end
 
   def new
