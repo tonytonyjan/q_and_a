@@ -1,0 +1,25 @@
+<h1>Questions</h1>
+
+<table>
+  <tbody>
+    <tr>
+      <th colspan="2">User</th>
+      <th>Question</th>
+      <th>Updated</th>
+    </tr>
+  </tbody>
+  <tbody>
+    <% @questions.each do |question| %>
+      <tr>
+        <td><%= image_tag question.user.avatar, width: 50, height: 50 %></td>
+        <td><%= question.user.name %></td>
+        <td><%= link_to question.title, question %></td>
+        <td><%= l question.updated_at, format: :short %></td>
+        <td><%= link_to_if question.belongs_to?(current_user), 'Edit', edit_question_path(question) %></td>
+        <td><%= link_to_if question.belongs_to?(current_user), 'Delete', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= render 'shared/pagination', pagination: @pagination %>

@@ -1,0 +1,11 @@
+<% if pagination.total_pages > 1 %>
+<nav>
+  <ul>
+    <li><%= link_to_if pagination.previous, '«', url_for(page: pagination.previous) %></li>
+    <% (1..pagination.total_pages).each do |page| %>
+    <li><%= link_to_if pagination.current_page != page, page, url_for(page: page) %></li>
+    <% end %>
+    <li><%= link_to_if pagination.next, '»', url_for(page: pagination.next) %></li>
+  </ul>
+</nav>
+<% end %>

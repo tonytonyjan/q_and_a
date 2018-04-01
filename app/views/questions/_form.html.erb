@@ -1,0 +1,23 @@
+<%= form_with(model: question, local: true) do |form| %>
+  <% if question.errors.any? %>
+    <div>
+      <ul>
+      <% question.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title %><br>
+    <%= form.text_field :title, id: :question_title, size: 50, placeholder: 'ex. Why do meteors always land in craters?' %>
+  </div>
+
+  <div>
+    <%= form.label :content %><br>
+    <%= form.text_area :content, id: :question_content, cols: 50, rows: 10, placeholder: "detail to describe the question..." %>
+  </div>
+
+  <%= form.submit %>
+<% end %>
