@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'webmock/minitest'
-
 # https://developers.google.com/identity/protocols/OAuth2WebServer
 class GoogleOauth2
   TOKEN_ENDPOINT = 'https://www.googleapis.com/oauth2/v4/token'
