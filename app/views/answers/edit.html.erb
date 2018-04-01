@@ -1,0 +1,7 @@
+<h1>Edit Answer to "<%= @question.title %>"</h1>
+
+<%= sanitize @question.content %>
+
+<hr>
+
+<%= render 'form', answer: @answer %>
