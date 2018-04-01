@@ -1,7 +1,7 @@
 FROM ruby:2.5.1-alpine3.7
 WORKDIR /app
 
-RUN apk add --no-cache libpq tzdata nodejs
+RUN apk add --no-cache libpq tzdata nodejs postgresql-client
 
 COPY Gemfile Gemfile.lock ./
 
