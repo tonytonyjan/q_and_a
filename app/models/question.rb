@@ -3,7 +3,7 @@ class Question < ApplicationRecord
 
   validates :title, :content, presence: true
   belongs_to :user
-  has_many :answers
+  has_many :answers, dependent: :destroy
 
   def self.list
     includes(:user).order(updated_at: :desc)
