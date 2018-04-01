@@ -3,7 +3,42 @@
 <%= link_to_if @question.belongs_to?(current_user), 'Edit', edit_question_path(@question) %>
 |
 <%= link_to_if @question.belongs_to?(current_user), 'Delete', @question, method: :delete, data: { confirm: 'Are you sure?' } %>
+|
+<%= link_to_if current_user, 'Answer the Question', new_question_answer_path(@question) %>
 
 <hr>
 
 <%= sanitize @question.content %>
+
+<h1>Answers</h1>
+
+<% if @answers.size > 0 %>
+  <table>
+    <thead>
+      <tr>
+        <th colspan="2">User</th>
+        <th>Answer</th>
+        <th>Updated</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @answers.each do |answer| %>
+        <tr id="<%= dom_id(answer) %>">
+          <td>
+            <%= image_tag answer.user.avatar, width: 50, height: 50 %>
+          </td>
+          <td><%= answer.user.name %></td>
+          <td style="width: 320px"><%= sanitize answer.content %></td>
+          <td><%= l answer.created_at, format: :short %></td>
+          <td><%= link_to_if answer.belongs_to?(current_user), 'Edit', edit_question_answer_path(@question, answer) %></td>
+          <td><%= link_to_if answer.belongs_to?(current_user), 'Delete', question_answer_path(@question, answer), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  There is no answer to this question,
+  <%= link_to 'be the first one to answer', new_question_answer_path(@question) %>.
+<% end %>
+
+<%= render 'shared/pagination', pagination: @pagination %>
