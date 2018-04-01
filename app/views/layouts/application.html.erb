@@ -9,6 +9,24 @@
   </head>
 
   <body>
+    <% if alert %>
+    <div class="flash"><%= alert %></div>
+    <% end %>
+
+    <% if notice %>
+    <div class="flash"><%= notice %></div>
+    <% end %>
+
+    <nav>
+      <ul>
+        <% if current_user %>
+          <li>Hi, <%= current_user.name %>!</li>
+          <li><%= link_to 'Sign out',  sign_out_path, method: :post %></li>
+        <% else %>
+          <li><%= link_to 'Sign in with google', google_sign_in_url %></li>
+        <% end %>
+      </ul>
+    </nav>
     <%= yield %>
   </body>
 </html>
