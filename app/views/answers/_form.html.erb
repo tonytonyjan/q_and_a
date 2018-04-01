@@ -1,0 +1,15 @@
+<%= form_with(model: [@question, answer], local: true) do |form| %>
+  <% if answer.errors.any? %>
+    <ul>
+      <% answer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div>
+    <%= form.text_area :content, rows: 10, cols: 50, placeholder: 'Write your answer here...' %>
+  </div>
+
+  <%= form.submit %>
+<% end %>

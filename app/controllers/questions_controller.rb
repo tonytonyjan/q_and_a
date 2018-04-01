@@ -12,7 +12,12 @@ class QuestionsController < ApplicationController
     @questions = paginate.records
   end
 
-  def show; end
+  def show
+    paginate = Paginate.new(repo: @question.answers.list, page: params[:page].to_i)
+    paginate.perform
+    @pagination = paginate.pagination
+    @answers = paginate.records
+  end
 
   def new
     @question = Question.new

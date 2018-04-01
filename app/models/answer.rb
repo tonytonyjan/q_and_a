@@ -1,9 +1,9 @@
-class Question < ApplicationRecord
+class Answer < ApplicationRecord
   include BelongsTo
 
-  validates :title, :content, presence: true
+  validates :content, presence: true
   belongs_to :user
-  has_many :answers
+  belongs_to :question
 
   def self.list
     includes(:user).order(updated_at: :desc)

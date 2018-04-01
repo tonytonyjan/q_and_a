@@ -1,0 +1,9 @@
+john_to_mary:
+  content: john_to_mary
+  user: john
+  question: mary
+
+mary_to_john:
+  content: mary_to_john
+  user: mary
+  question: john
