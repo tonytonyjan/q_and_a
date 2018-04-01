@@ -1,0 +1,23 @@
+version: '3'
+volumes:
+  pgdata:
+services:
+  pg:
+    image: postgres:10.3-alpine
+    restart: always
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: app_development
+      POSTGRES_USER: pguser
+      POSTGRES_PASSWORD: pgpassword
+  server:
+    build: .
+    volumes:
+      - .:/app
+    image: tonytonyjan/q_and_a
+    ports:
+      - '3000:3000'
+    links:
+      - pg
+    command: ["sh", "-c", "rm -f tmp/pids/server.pid && bin/wait_for_pg bin/rails server"]

@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require_relative '../config/environment'
+
+loop do
+  ActiveRecord::Base.connection
+  break if ActiveRecord::Base.connected?
+rescue PG::Error
+  warn 'Postgres is unavailable - sleeping'
+  sleep 1
+  next
+end
+
+puts 'Postgres is up - executing command'
+puts ARGV.join(' ')
+exec(*ARGV)
