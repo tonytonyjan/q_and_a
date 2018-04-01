@@ -28,3 +28,13 @@ services:
     links:
       - pg
     command: ["sh", "-c", "rm -f tmp/pids/server.pid && bin/wait_for_pg bin/rails server"]
+  test:
+    build: .
+    volumes:
+      - .:/app
+    image: tonytonyjan/q_and_a
+    links:
+      - pg-test
+    environment:
+      RAILS_ENV: test
+    command: ["bin/wait_for_pg", "bin/rails", "test"]
