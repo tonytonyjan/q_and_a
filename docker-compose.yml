@@ -27,6 +27,7 @@ services:
       - '3000:3000'
     links:
       - pg
+    env_file: .env
     command: ["sh", "-c", "rm -f tmp/pids/server.pid && bin/wait_for_pg bin/rails server"]
   test:
     build: .

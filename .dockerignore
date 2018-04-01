@@ -3,3 +3,4 @@
 /log
 /tmp
 .byebug_history
+/.env
