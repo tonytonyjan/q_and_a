@@ -18,3 +18,16 @@
    border: black 1px solid;
    padding: 8px;
  }
+
+ nav ul {
+   font-size: 24px;
+   list-style: none;
+   padding: 0;
+   margin: 0;
+   display: flex;
+   align-items: baseline;
+ }
+
+ nav li+li {
+   margin-left: 24px;
+ }
