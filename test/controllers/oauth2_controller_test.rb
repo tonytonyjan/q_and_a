@@ -2,6 +2,8 @@
 
 require 'test_helper'
 
+require 'webmock/minitest'
+
 class Oauth2ControllerTest < ActionDispatch::IntegrationTest
   test 'should get callback' do
     stub_request(:post, GoogleOauth2::TOKEN_ENDPOINT)
