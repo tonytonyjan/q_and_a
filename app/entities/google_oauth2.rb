@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'net/http'
+
 # https://developers.google.com/identity/protocols/OAuth2WebServer
 class GoogleOauth2
   TOKEN_ENDPOINT = 'https://www.googleapis.com/oauth2/v4/token'
