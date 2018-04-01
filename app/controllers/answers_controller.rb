@@ -8,6 +8,7 @@ class AnswersController < ApplicationController
 
   def new
     @answer = Answer.new
+    @question = QuestionPresenter.new(@question)
   end
 
   def create
@@ -19,6 +20,10 @@ class AnswersController < ApplicationController
     else
       render :new
     end
+  end
+
+  def edit
+    @question = QuestionPresenter.new(@question)
   end
 
   def update
