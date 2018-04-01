@@ -29,6 +29,6 @@ class SignInWithGoogleTest < ActiveSupport::TestCase
       session: session
     ).perform
 
-    assert_equal user_id, session[:user_id]
+    assert_equal user_id, session[SignInWithGoogle::KEY]
   end
 end
