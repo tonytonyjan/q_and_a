@@ -6,7 +6,10 @@ class QuestionsController < ApplicationController
   before_action :authenticate_owner!, only: %i[edit update destroy]
 
   def index
-    @questions = Question.list
+    paginate = Paginate.new(repo: Question.list, page: params[:page].to_i)
+    paginate.perform
+    @pagination = paginate.pagination
+    @questions = paginate.records
   end
 
   def show; end
