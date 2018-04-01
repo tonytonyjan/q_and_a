@@ -39,3 +39,12 @@ services:
     environment:
       RAILS_ENV: test
     command: ["bin/wait_for_pg", "bin/rails", "test"]
+  setup:
+    build: .
+    volumes:
+      - .:/app
+    image: tonytonyjan/q_and_a
+    links:
+      - pg
+      - pg-test
+    command: ["sh", "-c", "env RAILS_ENV=development bin/wait_for_pg true && env RAILS_ENV=test bin/wait_for_pg true && bin/setup"]
